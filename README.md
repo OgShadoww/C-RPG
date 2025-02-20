@@ -21,5 +21,6 @@ By completing real-world tasks like studying, exercising, and reading, you **lev
 ## 🎯 Roadmap  
 
 ✅ **v1.0:** Core mechanics – character creation, tasks, XP system  
-🔜 **v1.1:** New achievements, economy system    
+🔜 **v1.1:** Use json over txt
+🔜 **v1.2:** New achievements, economy system    
 🔜 **v2.0:** Online synchronization and leaderboard  
