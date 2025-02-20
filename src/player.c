@@ -1,25 +1,27 @@
 #include<stdio.h>
-
-typedef struct {
-    char name[50];
-    int level;
-    int xp;
-    int xp_needed;
-    int strength;
-    int intelligence;
-    int stamina;
-    char last_login[20];
-} Player;
+#include "player.h"
 
 int loadPlayer(Player *player) {
     FILE *data = fopen("../data/player.txt", "r");
     if (!data) {
-        printf("Error: Cannot open file\n");
+        perror("Error opening file");
         return 0;
     }
+
     fscanf(data, "%s %d %d %d %d %d %d %s", player->name, &player->level, &player->xp, &player->xp_needed, &player->strength, &player->intelligence, &player->stamina, player->last_login);
 
     fclose(data);
-    return 1;
+    return 0;
 }
 
+void printPlayer(Player *player) {
+    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printf("🎮 Player: %s\n", player->name);
+    printf("📅 Last Login: %s\n", player->last_login);
+    printf("\n");
+    printf("\n");
+    printf("✨ Level: %d | XP: %d/%d\n", player->level, player->xp, player->xp_needed);
+    printf("💪 Strength: %d | 🧠 Intelligence: %d | 🏃‍♂️ Stamina: %d\n", player->strength, player->intelligence, player->stamina);
+    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    return;
+}
