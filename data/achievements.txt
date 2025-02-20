@@ -1,0 +1,11 @@
+"name": "📚 Bookworm",
+"description": "Read 100 pages",
+"progress": 80,
+"goal": 100,
+"status": "in_progress"
+
+"name": "💪 Fitness Enthusiast",
+"description": "Complete 10 workouts",
+"progress": 7,
+"goal": 10,
+"status": "in_progress"

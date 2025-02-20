@@ -1,0 +1,8 @@
+"name": "",
+"level": 0,
+"xp": 0,
+"xp_needed": 0,
+"strength": 0,
+"intelligence": 0,
+"stamina": 0,
+"last_login": "2025-02-20"
