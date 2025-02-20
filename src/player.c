@@ -11,25 +11,15 @@ typedef struct {
     char last_login[20];
 } Player;
 
-int loadPlayer() {
-    FILE *player = fopen("data/player.txt", "r");
-
-    if (!player) {
+int loadPlayer(Player *player) {
+    FILE *data = fopen("../data/player.txt", "r");
+    if (!data) {
         printf("Error: Cannot open file\n");
         return 0;
     }
+    fscanf(data, "%s %d %d %d %d %d %d %s", player->name, &player->level, &player->xp, &player->xp_needed, &player->strength, &player->intelligence, &player->stamina, player->last_login);
 
-    char f[100];
-    while(fgets(f, sizeof(f), player)) {
-        printf("%s", f);
-    }
-
-    fclose(player);
+    fclose(data);
     return 1;
 }
 
-int main() {
-    loadPlayer();
-    
-    return 0;
-}
