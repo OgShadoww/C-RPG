@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "command_manager.h"
 #include "player.h"
 
 void printWelcomeMessage() {
@@ -14,39 +15,16 @@ void printWelcomeMessage() {
 
 int main() {
     char command[100];
-    Player player = {
-        .name = "",
-        .level = 0,
-        .xp = 0,
-        .xp_needed = 0,
-        .strength = 0,
-        .intelligence = 0,
-        .stamina = 0,
-        .last_login = ""
-    };
+    Player player;
 
     printWelcomeMessage();
 
     while (1) {
         printf("> ");
         fgets(command, sizeof(command), stdin);
-        command[strcspn(command, "\n")] = 0;  // Видаляємо `\n`
+        command[strcspn(command, "\n")] = 0;
 
-        if (strcmp(command, "exit()") == 0) {
-            printf("Exiting...\n");
-            break;
-        } 
-        else if (strcmp(command, "start()") == 0) {
-            if (loadPlayer(&player) == 1) {
-                printPlayer(&player);
-            } else {
-                printf("Error loading player data.\n");
-            }
-        } 
-        else {
-            printf("Unknown command: %s\n", command);
-        }
-
+        executeCommand(command, &player);
     }
 
     return 0;
