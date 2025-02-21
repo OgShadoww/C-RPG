@@ -25,3 +25,8 @@ void printPlayer(Player *player) {
     printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
     return;
 }
+
+void updatePlayer(Player *player) {
+    
+
+}
