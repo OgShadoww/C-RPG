@@ -14,5 +14,6 @@ typedef struct {
 
 int loadPlayer(Player *player);
 void printPlayer(Player *player);
+void updatePlayer(Player *player);
 
 #endif

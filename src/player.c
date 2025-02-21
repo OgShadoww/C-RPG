@@ -2,7 +2,7 @@
 #include "player.h"
 
 int loadPlayer(Player *player) {
-    FILE *data = fopen("../data/player.txt", "r");
+    FILE *data = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "r");
     if (!data) {
         perror("Error opening file");
         return 0;
@@ -11,7 +11,7 @@ int loadPlayer(Player *player) {
     fscanf(data, "%s %d %d %d %d %d %d %s", player->name, &player->level, &player->xp, &player->xp_needed, &player->strength, &player->intelligence, &player->stamina, player->last_login);
 
     fclose(data);
-    return 0;
+    return 1;
 }
 
 void printPlayer(Player *player) {
@@ -27,6 +27,6 @@ void printPlayer(Player *player) {
 }
 
 void updatePlayer(Player *player) {
-    
+    FILE *file = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "W");
 
 }
