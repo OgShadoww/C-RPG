@@ -13,7 +13,6 @@
 
 
 // functions
-void printLogo();
 void printWelcomeMessage();
 void printSlow(const char *text, int delay);
 void clearScreen();

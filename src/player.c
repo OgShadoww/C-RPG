@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include "player.h"
+#include"ui_manager.h"
 
 int loadPlayer(Player *player) {
     FILE *data = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "r");
@@ -15,14 +16,14 @@ int loadPlayer(Player *player) {
 }
 
 void printPlayer(Player *player) {
-    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printSlow("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n", 30);
     printf("🎮 Player: %s\n", player->name);
     printf("📅 Last Login: %s\n", player->last_login);
     printf("\n");
     printf("\n");
     printf("✨ Level: %d | XP: %d/%d\n", player->level, player->xp, player->xp_needed);
     printf("💪 Strength: %d | 🧠 Intelligence: %d | 🏃‍♂️ Stamina: %d\n", player->strength, player->intelligence, player->stamina);
-    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printSlow("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n", 30);
     return;
 }
 

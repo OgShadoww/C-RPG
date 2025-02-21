@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.cpp": "cpp",
-        "player.h": "c"
+        "player.h": "c",
+        "ui_manager.h": "c"
     }
 }
