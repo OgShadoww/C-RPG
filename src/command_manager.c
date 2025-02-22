@@ -10,7 +10,8 @@ void startGame(Player *player) {
         printPlayer(player);
     }   
     else {
-        printf(RED "Error loading player data.\n" RESET);
+        createPlayer(player);
+        printPlayer(player);
     }
 }
 

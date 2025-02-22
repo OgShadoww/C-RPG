@@ -2,6 +2,20 @@
 #include "player.h"
 #include"ui_manager.h"
 
+void createPlayer(Player *player) {
+    FILE *file = fopen(player->path, "w");
+
+    if (!file) {
+        perror("Error creating file");
+        return;
+    }
+
+    fprintf(file, "%s %d %d %d %d %d %d %d %d %d %d %d %d %s\n", 
+        player->name, 0, 0, 10, 0, 1, 1, 1, 1, 1, 0, 0, 0, "2025-02-21");
+
+    fclose(file);
+}
+
 int loadPlayer(Player *player) {
     FILE *data = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "r");
     if (!data) {
@@ -9,25 +23,129 @@ int loadPlayer(Player *player) {
         return 0;
     }
 
-    fscanf(data, "%s %d %d %d %d %d %d %s", player->name, &player->level, &player->xp, &player->xp_needed, &player->strength, &player->intelligence, &player->stamina, player->last_login);
+    fscanf(data, "%s %d %d %d %d", player->name, &player->level, &player->xp, &player->xp_needed, &player->upgrade_point);
+    fscanf(data, "%d %d %d %d %d", &player->intelligence, &player->strength, &player->endurance, &player->creativity, &player->discipline);
+    int n;
+    fscanf(data, "%d", &n);
+    player->num_skills = n;
+    for (int i = 0; i < n; i++) {
+        fscanf(data, "%49s %d %49s", player->skills[i].name, &player->skills[i].level, player->skills[i].type);
+    }    
+    if (!feof(data)) {
+        fscanf(data, "%d %d %s", &player->completed_tasks, &player->defeated_bosses, player->last_login);
+    }    
 
     fclose(data);
     return 1;
 }
 
 void printPlayer(Player *player) {
-    printSlow("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n", 30);
-    printf("🎮 Player: %s\n", player->name);
-    printf("📅 Last Login: %s\n", player->last_login);
     printf("\n");
+    printSlow("┌───────────────────────────────────┐\n", 15);
+    printSlow("│          PLAYER PROFILE           │\n", 15);
+    printSlow("└───────────────────────────────────┘\n", 15);
+    
+    printf(" Name:          %s\n", player->name);
+    printf(" Last Login:    %s\n", player->last_login);
     printf("\n");
-    printf("✨ Level: %d | XP: %d/%d\n", player->level, player->xp, player->xp_needed);
-    printf("💪 Strength: %d | 🧠 Intelligence: %d | 🏃‍♂️ Stamina: %d\n", player->strength, player->intelligence, player->stamina);
-    printSlow("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n", 30);
-    return;
+
+    printSlow("┌────────── LEVEL & XP ────────────┐\n", 10);
+    printf(" Level: %d  |  XP: %d / %d\n", player->level, player->xp, player->xp_needed);
+    printf("\n");
+
+    printSlow("┌────────── ATTRIBUTES ────────────┐\n", 10);
+    printf(" Intelligence:   %d\n", player->intelligence);
+    printf(" Strength:       %d\n", player->strength);
+    printf(" Endurance:      %d\n", player->endurance);
+    printf(" Creativity:     %d\n", player->creativity);
+    printf(" Discipline:     %d\n", player->discipline);
+    printf("\n");
+
+    printSlow("┌──────────── SKILLS ──────────────┐\n", 10);
+    if (player->num_skills == 0) {
+        printSlow(" No skills acquired yet.\n", 10);
+    } else {
+        for (int i = 0; i < player->num_skills; i++) {
+            printf(" [%s] - Level %d (%s)\n", player->skills[i].name, player->skills[i].level, player->skills[i].type);
+        }
+    }
+    printf("\n");
+
+    printSlow("┌─────────── PROGRESS ─────────────┐\n", 10);
+    printf(" Tasks Completed: %d\n", player->completed_tasks);
+    printf(" Bosses Defeated: %d\n", player->defeated_bosses);
+    printf("\n");
 }
 
-void updatePlayer(Player *player) {
-    FILE *file = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "W");
 
+void updatePlayer(Player *player) {
+    FILE *file = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "w");
+
+    if (!file) {
+        perror("Error updating file");
+        return;
+    }
+
+    fprintf(file, "%s %d %d %d %d %d ", player->name, player->level, player->xp, player->xp_needed, player->upgrade_point, player->num_skills);
+    for(int i = 0; i < player->num_skills; i++) {
+        fprintf(file, "%s %d %s ", player->skills[i].name, player->skills[i].level, player->skills[i].type);
+    }    
+    fprintf(file, "%d %d %s ", player->completed_tasks, player->defeated_bosses, player->last_login);
+
+    fclose(file);
+}   
+
+void addXP(Player *player, int xp) {
+    player->xp += xp;
+
+    if(player->xp >= player->xp_needed) {
+        int difXP = player->xp - player->xp_needed;
+        levelUp(player, difXP);
+    }
+
+    updatePlayer(player);
+}
+
+void levelUp(Player *player, int difXP) {
+    player->level += 1;
+    player->xp = difXP;
+    player->xp_needed *= 1.2;
+    player->upgrade_point++;
+    
+    printf("\n");
+    printSlow("───────────────────────────────────\n", 20);
+    printSlow("   LEVEL UP!  You reached Level ", 20);
+    printf("%d!\n", player->level);
+    printSlow("───────────────────────────────────\n", 20);
+
+    updatePlayer(player);
+
+}
+
+void upgradeAttribute(Player *player) {
+    if (player->upgrade_point <= 0) {
+        printSlow("You have no upgrade points available.\n", 20);
+        return;
+    }
+
+    printSlow("Choose an attribute to upgrade:\n", 25);
+    printf("1. Intelligence\n");
+    printf("2. Strength\n");
+    printf("3. Endurance\n");
+    printf("4. Creativity\n");
+    printf("5. Discipline\n");
+
+    int choice;
+    scanf("%d", &choice);
+
+    switch (choice) {
+        case 1: player->intelligence++; break;
+        case 2: player->strength++; break;
+        case 3: player->endurance++; break;
+        case 4: player->creativity++; break;
+        case 5: player->discipline++; break;
+    }
+
+    player->upgrade_point--;
+    updatePlayer(player);
 }
