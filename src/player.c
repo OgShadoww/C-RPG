@@ -63,44 +63,10 @@ int loadPlayer(Player *player) {
     return 1;
 }
 
+
 void printPlayer(Player *player) {
-    printf("\n");
-    printSlow("┌───────────────────────────────────┐\n", 15);
-    printSlow("│          PLAYER PROFILE           │\n", 15);
-    printSlow("└───────────────────────────────────┘\n", 15);
-    
-    printf(" Name:          %s\n", player->name);
-    printf(" Last Login:    %s\n", player->last_login);
-    printf("\n");
-
-    printSlow("┌────────── LEVEL & XP ────────────┐\n", 10);
-    printf(" Level: %d  |  XP: %d / %d\n", player->level, player->xp, player->xp_needed);
-    printf("\n");
-
-    printSlow("┌────────── ATTRIBUTES ────────────┐\n", 10);
-    printf(" Intelligence:   %d\n", player->intelligence);
-    printf(" Strength:       %d\n", player->strength);
-    printf(" Endurance:      %d\n", player->endurance);
-    printf(" Creativity:     %d\n", player->creativity);
-    printf(" Discipline:     %d\n", player->discipline);
-    printf("\n");
-
-    printSlow("┌──────────── SKILLS ──────────────┐\n", 10);
-    if (player->num_skills == 0) {
-        printSlow(" No skills acquired yet.\n", 10);
-    } else {
-        for (int i = 0; i < player->num_skills; i++) {
-            printf(" [%s] - Level %d (%s)\n", player->skills[i].name, player->skills[i].level, player->skills[i].type);
-        }
-    }
-    printf("\n");
-
-    printSlow("┌─────────── PROGRESS ─────────────┐\n", 10);
-    printf(" Tasks Completed: %d\n", player->completed_tasks);
-    printf(" Bosses Defeated: %d\n", player->defeated_bosses);
-    printf("\n");
+    printPlayerStats(player);
 }
-
 
 void updatePlayer(Player *player) {
     FILE *file = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "w");

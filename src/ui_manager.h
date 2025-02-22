@@ -11,10 +11,17 @@
 #define CYAN    "\033[36m"
 #define WHITE   "\033[37m"
 
+#include"player.h"
 
 // functions
 void printWelcomeMessage();
 void printSlow(const char *text, int delay);
 void clearScreen();
+void printSeparator();
+void printHeader(const char *title);
+void printPlayerStats(Player *player);
+void printXPInfo(Player *player);
+void printTaskCompletion(const char *taskName, int xp);
+void printLevelUp(Player *player);
 
 #endif

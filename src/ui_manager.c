@@ -21,6 +21,72 @@ void printSlow(const char *text, int delay) {
     printf("\n");
 }
 
+void printSeparator() {
+    printf("───────────────────────────────────\n");
+}
+
+void printHeader(const char *title) {
+    printSeparator();
+    printf("   %s\n", title);
+    printSeparator();
+}
+
+void printPlayerStats(Player *player) {
+    printf("\n");
+    printHeader("PLAYER PROFILE");
+    
+    printf(" Name:          %s\n", player->name);
+    printf(" Last Login:    %s\n", player->last_login);
+    printf("\n");
+
+    printHeader("LEVEL & XP");
+    printf(" Level: %d  |  XP: %d / %d\n", player->level, player->xp, player->xp_needed);
+    printf("\n");
+
+    printHeader("ATTRIBUTES");
+    printf(" Intelligence:   %d\n", player->intelligence);
+    printf(" Strength:       %d\n", player->strength);
+    printf(" Endurance:      %d\n", player->endurance);
+    printf(" Creativity:     %d\n", player->creativity);
+    printf(" Discipline:     %d\n", player->discipline);
+    printf("\n");
+
+    printHeader("SKILLS");
+    if (player->num_skills == 0) {
+        printf(" No skills acquired yet.\n");
+    } else {
+        for (int i = 0; i < player->num_skills; i++) {
+            printf(" [%s] - Level %d (%s)\n", player->skills[i].name, player->skills[i].level, player->skills[i].type);
+        }
+    }
+    printf("\n");
+
+    printHeader("PROGRESS");
+    printf(" Tasks Completed: %d\n", player->completed_tasks);
+    printf(" Bosses Defeated: %d\n", player->defeated_bosses);
+    printf("\n");
+}
+
+void printXPInfo(Player *player) {
+    printf("Current XP: %d/%d\n", player->xp, player->xp_needed);
+}
+
+
+void printTaskCompletion(const char *taskName, int xp) {
+    printf("\n");
+    printSlow("───────────────────────────────────\n", 15);
+    printf(" Task Completed: %s! +%d XP!\n", taskName, xp);
+    printSlow("───────────────────────────────────\n", 15);
+}
+
+void printLevelUp(Player *player) {
+    printf("\n");
+    printSlow("───────────────────────────────────\n", 20);
+    printSlow("   LEVEL UP!  You reached Level ", 20);
+    printf("%d!\n", player->level);
+    printSlow("───────────────────────────────────\n", 20);
+}
+
 // void printWelcomeMessage() {
 //     clearScreen();
 
@@ -60,3 +126,4 @@ void printWelcomeMessage() {
 
     printSlow(WHITE "Type the number corresponding to your path to continue...\n", 40);
 }
+

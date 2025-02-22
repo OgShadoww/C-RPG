@@ -1,11 +1,11 @@
-#include<stdio.h>
-#include"ui_manager.h"
-#include"level_manager.h"
+#include "level_manager.h"
+#include "ui_manager.h"
+#include <stdio.h>
 
 void addXP(Player *player, int xp) {
     player->xp += xp;
 
-    if(player->xp >= player->xp_needed) {
+    if (player->xp >= player->xp_needed) {
         int difXP = player->xp - player->xp_needed;
         levelUp(player, difXP);
     }
@@ -14,20 +14,15 @@ void addXP(Player *player, int xp) {
 }
 
 void levelUp(Player *player, int difXP) {
-    player->level += 1;
+    player->level++;
     player->xp = difXP;
-    player->xp_needed *= 1.2;
+    player->xp_needed = (int)(player->xp_needed * 1.2);
     player->upgrade_point++;
-    
-    printf("\n");
-    printSlow("───────────────────────────────────\n", 20);
-    printSlow("   LEVEL UP!  You reached Level ", 20);
-    printf("%d!\n", player->level);
-    printSlow("───────────────────────────────────\n", 20);
 
+    printLevelUp(player);
     updatePlayer(player);
-
 }
+
 
 void upgradeAttribute(Player *player) {
     if (player->upgrade_point <= 0) {
