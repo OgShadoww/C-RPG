@@ -23,26 +23,21 @@ void printSlow(const char *text, int delay) {
 
 void printPlayerStats(Player *player, int firstTime) {
     clearScreen();
-    
     if (firstTime) {
-        printSlow("\n\n", 15);
-        
-        printSlow("\033[1;34mRetrieving user profile...\033[0m\n", 40);
-        printSlow("\033[1;32mCompiling behavioral data...\033[0m\n", 40);
-        printSlow("\033[1;31mWARNING: Incomplete dataset.\033[0m\n\n", 50);
-        
-        printSlow("\033[1;35mAnalysis complete.\033[0m\n", 50);
-        printSlow("\033[1;35mInitializing cognitive progression system...\033[0m\n\n", 50);
-        
-        printSlow("\033[1;37mYour profile has been successfully activated.\033[0m\n", 50);
-        printSlow("\033[1;37mMonitor your progress carefully.\033[0m\n\n", 50);
-        
-        printSlow("\033[1;33mDisplaying subject information:\033[0m\n", 50);
+        printSlow("\n\033[1;34m[SYSTEM] Retrieving user profile...\033[0m\n", 40);
+        printSlow("\033[1;32m[SYSTEM] Compiling behavioral data...\033[0m\n", 40);
+        printSlow("\033[1;31m[SYSTEM] WARNING: Incomplete dataset.\033[0m\n\n", 50);
+        printSlow("\033[1;33m[SYSTEM] Analysis complete. Initializing system...\033[0m\n\n", 50);
+        printSlow("\033[1;35m[ECHO] Your profile has been successfully activated.\033[0m\n", 50);
+        printSlow("\033[1;35m[ECHO] Monitoring progression...\033[0m\n\n", 50);
+        usleep(300000);
     }
+
+    clearScreen();
     
-    printf("\n\033[1;36m Name:\033[0m          %s\n", player->name);
-    printf("\033[1;36m Last Login:\033[0m    %s\n", player->last_login);
-    usleep(200000);  // Плавний ефект появи
+    printf("\n\033[1;36m Name: %s\033[0m\n", player->name);
+    printf("\033[1;36m Last Login: %s\033[0m\n", player->last_login);
+    usleep(200000);
 
     printf("\n\033[1;34m┌────────── LEVEL & XP ────────────┐\033[0m\n");
     printf("\033[1;34m Level: %d  |  XP: %d / %d\033[0m\n", player->level, player->xp, player->xp_needed);
@@ -58,7 +53,7 @@ void printPlayerStats(Player *player, int firstTime) {
 
     printf("\n\033[1;35m┌──────────── SKILLS ──────────────┐\033[0m\n");
     if (player->num_skills == 0) {
-        printf("\033[1;35m No registered skills detected.\033[0m\n");
+        printf("\033[1;35m [ECHO] No registered skills detected.\033[0m\n");
     } else {
         for (int i = 0; i < player->num_skills; i++) {
             printf("\033[1;35m [%s] - Level %d (%s)\033[0m\n", player->skills[i].name, player->skills[i].level, player->skills[i].type);
@@ -70,10 +65,6 @@ void printPlayerStats(Player *player, int firstTime) {
     printf("\033[1;31m Tasks Completed: %d\033[0m\n", player->completed_tasks);
     printf("\033[1;31m Bosses Defeated: %d\033[0m\n", player->defeated_bosses);
     usleep(200000);
-
-    if (firstTime) {
-        printSlow("\n\033[1;37mAwaiting further interaction...\033[0m\n", 50);
-    }
 }
 
 void printXPInfo(Player *player) {
@@ -120,27 +111,32 @@ void printWelcomeMessage(Player *player, int firstTime) {
         printSlow("\033[1;37mFollow the system. Complete the tasks. Unlock the truth.\033[0m\n\n", 50);
 
         printSlow("\033[1;31mStarting new object creation...\033[0m\n", 60);
-        printSlow("\033[1;31mAwaiting command:\033[0m ", 60);
     } else {
         printSlow("\033[1;34mReestablishing connection...\033[0m\n", 40);
         printSlow("\033[1;32mScanning user profile...\033[0m\n", 40);
         printSlow("\033[1;37mWelcome back, \033[0m", 40);
-        printf("\033[1;37m%s.\033[0m\n\n", player->name);
+        printf("\033[1;37m%s.\033[0m", player->name);
         printSlow("\033[1;35mYour progression is being monitored.\033[0m\n", 40);
         printSlow("\033[1;37mDisplaying your profile...\033[0m\n\n", 40);
-
-        printPlayerStats(player, 0);  // Автоматично показує профіль після входу
         
         printSlow("\n\033[1;33mCurrent objectives:\033[0m\n", 50);
-
-        printSlow("\n\033[1;37mAvailable commands:\033[0m\n", 50);
-        printSlow("\033[1;34m  - profile()   \033[0m→ View your character profile\n", 30);
-        printSlow("\033[1;34m  - tasks()     \033[0m→ View your tasks\n", 30);
-        printSlow("\033[1;34m  - upgrade()   \033[0m→ Upgrade your attributes\n", 30);
-        printSlow("\033[1;34m  - help()      \033[0m→ List all available commands\n", 30);
-        printSlow("\033[1;34m  - exit()      \033[0m→ Leave the system\n\n", 30);
-
-        printSlow("\033[1;37mAwaiting command...\033[0m\n", 40);
+        printCommandList();
     }
 }
 
+void printCommandList() {
+    clearScreen();
+
+    printSlow("\n\033[1;35m[ECHO] Available system commands:\033[0m\n", 40);
+
+    usleep(200000);
+    printSlow("\033[1;36m  - profile()   → View your character profile\033[0m\n", 30);
+    printSlow("\033[1;36m  - tasks()     → View your active tasks\033[0m\n", 30);
+    printSlow("\033[1;36m  - upgrade()   → Upgrade your attributes\033[0m\n", 30);
+    printSlow("\033[1;36m  - help()      → List all available commands\033[0m\n", 30);
+    printSlow("\033[1;36m  - exit()      → Disconnect from the system\033[0m\n", 30);
+    
+    usleep(200000);
+    printSlow("\n\033[1;33m[ECHO] Use commands wisely. Your journey depends on it.\033[0m\n", 40);
+    printSlow("\033[1;37mAwaiting command...\033[0m\n", 40);
+}

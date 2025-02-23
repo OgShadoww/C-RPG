@@ -21,5 +21,6 @@ void clearScreen();
 void printPlayerStats(Player *player, int firstTime);
 void printXPInfo(Player *player);
 void printLevelUp(Player *player);
+void printCommandList();
 
 #endif

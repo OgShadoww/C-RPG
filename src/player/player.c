@@ -85,7 +85,6 @@ int loadPlayer(Player *player) {
     return 1;
 }
 
-
 void printPlayer(Player *player, int firstTime) {
     printPlayerStats(player, firstTime);
 }

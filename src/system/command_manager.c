@@ -8,18 +8,26 @@
 #include"../time/time_manager.h"
 
 void startGame(Player *player) {
-    int firstTime = loadPlayer(player); 
+    FILE *data = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "r");
+    int firstTime = (data == NULL); 
+    if (data) fclose(data); 
 
-    printWelcomeMessage(player, !firstTime);
+    if (!firstTime) {
+        int loadFail = loadPlayer(player);
+        if (loadFail) {
+            printSlow("[SYSTEM] Please delete the save file and restart.\n", 40);
+            exit(1); 
+        }
+    }
+
+    printWelcomeMessage(player, firstTime);
 
     if (firstTime) {
-        printf("\nEnter `start()` to begin your journey.\n");
-        return;  
+        createPlayer(player);
     }
 
     checkDailyReset(player);
     printPlayerStats(player, firstTime);
-    printf("\nEnter your command:\n");
 }
 
 void exitGame(Player *player) {
