@@ -34,7 +34,7 @@ void printPlayerStats(Player *player, int firstTime) {
     }
 
     clearScreen();
-    
+
     printf("\n\033[1;36m Name: %s\033[0m\n", player->name);
     printf("\033[1;36m Last Login: %s\033[0m\n", player->last_login);
     usleep(200000);
@@ -115,8 +115,8 @@ void printWelcomeMessage(Player *player, int firstTime) {
         printSlow("\033[1;34mReestablishing connection...\033[0m\n", 40);
         printSlow("\033[1;32mScanning user profile...\033[0m\n", 40);
         printSlow("\033[1;37mWelcome back, \033[0m", 40);
-        printf("\033[1;37m%s.\033[0m", player->name);
-        printSlow("\033[1;35mYour progression is being monitored.\033[0m\n", 40);
+        printf("\033[1;37m%s.\033[0m", player->name); // No newline here
+        printSlow("\n\033[1;35mYour progression is being monitored.\033[0m\n", 40);
         printSlow("\033[1;37mDisplaying your profile...\033[0m\n\n", 40);
         
         printSlow("\n\033[1;33mCurrent objectives:\033[0m\n", 50);
@@ -130,13 +130,12 @@ void printCommandList() {
     printSlow("\n\033[1;35m[ECHO] Available system commands:\033[0m\n", 40);
 
     usleep(200000);
-    printSlow("\033[1;36m  - profile()   → View your character profile\033[0m\n", 30);
-    printSlow("\033[1;36m  - tasks()     → View your active tasks\033[0m\n", 30);
-    printSlow("\033[1;36m  - upgrade()   → Upgrade your attributes\033[0m\n", 30);
-    printSlow("\033[1;36m  - help()      → List all available commands\033[0m\n", 30);
-    printSlow("\033[1;36m  - exit()      → Disconnect from the system\033[0m\n", 30);
+    printf("\033[1;36m  - profile()   → View your character profile\033[0m\n");
+    printf("\033[1;36m  - tasks()     → View your active tasks\033[0m\n");
+    printf("\033[1;36m  - upgrade()   → Upgrade your attributes\033[0m\n");
+    printf("\033[1;36m  - menu()      → List all available commands\033[0m\n");
+    printf("\033[1;36m  - exit()      → Disconnect from the system\033[0m\n");
     
     usleep(200000);
-    printSlow("\n\033[1;33m[ECHO] Use commands wisely. Your journey depends on it.\033[0m\n", 40);
     printSlow("\033[1;37mAwaiting command...\033[0m\n", 40);
 }

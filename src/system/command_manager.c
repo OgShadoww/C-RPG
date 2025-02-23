@@ -25,9 +25,20 @@ void startGame(Player *player) {
     if (firstTime) {
         createPlayer(player);
     }
-
+    
     checkDailyReset(player);
-    printPlayerStats(player, firstTime);
+}
+
+void profile(Player *player) {
+    printPlayer(player, 0);
+}
+
+void menu() {
+    printCommandList();
+}
+
+void tasks() {
+
 }
 
 void exitGame(Player *player) {
@@ -36,8 +47,9 @@ void exitGame(Player *player) {
 }
 
 Command commands[] = {
-    {"start()", startGame},
-    {"exit()", exitGame}
+    {"exit()", exitGame},
+    {"profile()", profile},
+    {"menu()", menu},
 };
 
 void executeCommand(const char *input, Player *player) {

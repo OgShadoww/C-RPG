@@ -13,5 +13,6 @@ extern Command commands[];
 void executeCommand(const char *input, Player *player);
 void startGame(Player *player);
 void exitGame(Player *player);
+void profile(Player *player);
 
 #endif
