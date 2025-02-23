@@ -10,10 +10,6 @@ typedef struct {
 
 } Task;
 
-void loadTasks();
-void displayTasks();
-int completeTask(const char *taskID);
-void saveTask();
 void resetDailyTasks();
 
 #endif
