@@ -19,6 +19,8 @@ git clone https://github.com/OgShadoww/C-RPG.git
 cd C-RPG
 ```
 
+---
+
 ## 🔹 What makes C-RPG unique?
 - **🏆 Self-Improvement Mechanics: Level up by completing real-world tasks**
 - **🔓 Decryption System: Unlock encrypted logs containing pieces of a hidden story**
