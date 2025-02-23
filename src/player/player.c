@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include "player.h"
-#include"ui_manager.h"
+#include"../ui/ui_manager.h"
 
 void createPlayer(Player *player) {
     FILE *file = fopen(player->path, "w");

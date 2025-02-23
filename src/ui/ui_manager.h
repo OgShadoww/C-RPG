@@ -11,8 +11,8 @@
 #define CYAN    "\033[36m"
 #define WHITE   "\033[37m"
 
-#include"player.h"
-#include"tasks.h"
+#include"../player/player.h"
+#include"../tasks/tasks.h"
 
 // functions
 void printWelcomeMessage(Player *player, int firstTime);

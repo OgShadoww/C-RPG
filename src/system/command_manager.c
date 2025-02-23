@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "command_manager.h"
-#include "ui_manager.h"
-#include "player.h"
+#include "../ui/ui_manager.h"
+#include "../player/player.h"
 
 void startGame(Player *player) {
     if(loadPlayer(player) == 1) {
