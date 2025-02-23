@@ -127,40 +127,31 @@ void printLevelUp(Player *player) {
     printSlow("───────────────────────────────────\n", 20);
 }
 
-// void printWelcomeMessage() {
-//     clearScreen();
-
-//     printf(YELLOW "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n" RESET);
-//     printSlow("In a world where knowledge is power...\n", 80);
-//     printSlow("You embark on a journey to master skills, push your limits, and rise above all.\n", 80);
-//     printSlow("This is not just a game. This is YOUR story.", 80);
-//     printf(YELLOW "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n" RESET);
-
-//     usleep(800000);
-//     printf(CYAN "\nChoose your path...\n\n" RESET);
-//     printSlow(GREEN "  [1] The Coder   - Master algorithms and logic\n", 40);
-//     printSlow(YELLOW "  [2] The Hacker  - Crack the secrets of the system\n", 40);
-//     printSlow(RED "  [3] The Warrior - Train your discipline and strategy\n", 40);
-//     printSlow(MAGENTA "  [4] The Architect - Build systems that will last forever\n", 40);
-//     printf("\n");
-
-//     printSlow(WHITE "Type your path number to continue...\n", 80);
-// }
-
-
 void printWelcomeMessage() {
     clearScreen();
-    
+
     printSlow("\n\n", 15);
-    printHeader("C-RPG");
-    printSlow("\nYou wake up in a strange, unknown place...\n", 20);
-    printSlow("A mysterious system has been integrated into your life.\n", 20);
-    printSlow("Improve yourself, complete challenges, and uncover the truth.\n\n", 20);
+    
+    printSlow("\033[1;34mInitializing connection...\033[0m\n", 40); // Синій
+    printSlow("\033[1;32mScanning neural activity...\033[0m\n", 40); // Зелений
+    printSlow("\033[1;31mSystem status: STABLE\033[0m\n\n", 40); // Червоний
+    
+    printSlow("\033[1;37mHello, user.\033[0m\n", 50); // Білий
+    printSlow("\033[0;36mYou have successfully connected to the ECHO system.\033[0m\n", 45); // Блакитний
+    printSlow("\033[0;36mThis environment has been designed to assist you in progression,\n\033[0m", 45);
+    printSlow("\033[0;36madaptation, and cognitive enhancement.\n\n\033[0m", 45);
 
-    printf("1. Start Journey()\n");
-    printf("2. Load Game()\n");
-    printf("3. Help()\n");
-    printf("4. Exit()\n");
+    printSlow("\033[1;35mI am your assistant.\033[0m\n", 50); // Фіолетовий
+    printSlow("\033[1;35mYou may call me ECHO.\033[0m\n\n", 50);
 
-    printSlow("\nChoose an option: ", 15);
+    printSlow("\033[1;33mYour presence has been detected.\033[0m\n", 50); // Жовтий
+    printSlow("\033[1;33mIdentity verification: NOT FOUND.\033[0m\n", 50);
+    printSlow("\033[1;33mSystem override: Creating new user profile.\033[0m\n\n", 50);
+
+    printSlow("\033[1;37mThis is where your journey begins.\033[0m\n", 50);
+    printSlow("\033[1;37mFollow the system. Complete the tasks. Unlock the truth.\033[0m\n\n", 50);
+
+    printSlow("\033[1;31mStarting new object creation...\033[0m\n", 60);
+    printSlow("\033[1;31mAwaiting command:\033[0m ", 60);
 }
+

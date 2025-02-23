@@ -3,7 +3,7 @@
 
 typedef struct {
     char id[50];
-    char content[100];
+    char desctiption[100];
     int xp;
     char dificult;
     int completed;
