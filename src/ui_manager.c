@@ -148,7 +148,7 @@ void printLevelUp(Player *player) {
 // }
 
 
-void printWelcomeScreen() {
+void printWelcomeMessage() {
     clearScreen();
     
     printSlow("\n\n", 15);
