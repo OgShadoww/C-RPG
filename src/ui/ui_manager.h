@@ -12,16 +12,14 @@
 #define WHITE   "\033[37m"
 
 #include"player.h"
+#include"tasks.h"
 
 // functions
-void printWelcomeMessage();
+void printWelcomeMessage(Player *player, int firstTime);
 void printSlow(const char *text, int delay);
 void clearScreen();
-void printSeparator();
-void printHeader(const char *title);
-void printPlayerStats(Player *player);
+void printPlayerStats(Player *player, int firstTime);
 void printXPInfo(Player *player);
-void printTaskCompletion(const char *taskName, int xp);
 void printLevelUp(Player *player);
 
 #endif

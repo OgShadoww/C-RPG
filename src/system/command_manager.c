@@ -7,11 +7,11 @@
 
 void startGame(Player *player) {
     if(loadPlayer(player) == 1) {
-        printPlayer(player);
+        printPlayer(player, 0);
     }   
     else {
         createPlayer(player);
-        printPlayer(player);
+        printPlayer(player, 1);
     }
 }
 

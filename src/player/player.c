@@ -64,8 +64,8 @@ int loadPlayer(Player *player) {
 }
 
 
-void printPlayer(Player *player) {
-    printPlayerStats(player);
+void printPlayer(Player *player, int firstTime) {
+    printPlayerStats(player, firstTime);
 }
 
 void updatePlayer(Player *player) {

@@ -33,7 +33,7 @@ typedef struct {
 
 void createPlayer(Player *player);
 int loadPlayer(Player *player);
-void printPlayer(Player *player);
+void printPlayer(Player *player, int firstTime);
 void updatePlayer(Player *player);
 void addXP(Player *player, int xp);
 void levelUp(Player *player, int difXP);
