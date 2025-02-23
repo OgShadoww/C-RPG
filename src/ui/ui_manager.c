@@ -76,11 +76,9 @@ void printPlayerStats(Player *player, int firstTime) {
     }
 }
 
-
 void printXPInfo(Player *player) {
     printf("Current XP: %d/%d\n", player->xp, player->xp_needed);
 }
-
 
 void printTaskCompletion(const char *taskName, int xp) {
     printf("\n");
@@ -146,38 +144,3 @@ void printWelcomeMessage(Player *player, int firstTime) {
     }
 }
 
-
-// void printWelcomeMessage(int firstTime) {
-//     clearScreen();
-//     printSlow("\n\n", 15);
-
-//     if (firstTime) {
-//         printSlow("\033[1;34mInitializing connection...\033[0m\n", 40); // Синій
-//         printSlow("\033[1;32mScanning neural activity...\033[0m\n", 40); // Зелений
-//         printSlow("\033[1;31mSystem status: STABLE\033[0m\n\n", 40); // Червоний
-        
-//         printSlow("\033[1;37mHello, user.\033[0m\n", 50); // Білий
-//         printSlow("\033[0;36mYou have successfully connected to the ECHO system.\033[0m\n", 45); // Блакитний
-//         printSlow("\033[0;36mThis environment has been designed to assist you in progression,\n\033[0m", 45);
-//         printSlow("\033[0;36madaptation, and cognitive enhancement.\n\n\033[0m", 45);
-
-//         printSlow("\033[1;35mI am your assistant.\033[0m\n", 50); // Фіолетовий
-//         printSlow("\033[1;35mYou may call me ECHO.\033[0m\n\n", 50);
-
-//         printSlow("\033[1;33mYour presence has been detected.\033[0m\n", 50); // Жовтий
-//         printSlow("\033[1;33mIdentity verification: NOT FOUND.\033[0m\n", 50);
-//         printSlow("\033[1;33mSystem override: Creating new user profile.\033[0m\n\n", 50);
-
-//         printSlow("\033[1;37mThis is where your journey begins.\033[0m\n", 50);
-//         printSlow("\033[1;37mFollow the system. Complete the tasks. Unlock the truth.\033[0m\n\n", 50);
-
-//         printSlow("\033[1;31mStarting new object creation...\033[0m\n", 60);
-//         printSlow("\033[1;31mAwaiting command:\033[0m ", 60);
-//     } else {
-//         printSlow("\033[1;34mReestablishing connection...\033[0m\n", 40);
-//         printSlow("\033[1;32mScanning user profile...\033[0m\n", 40);
-//         printSlow("\033[1;37mWelcome back, \033[0m", 40);
-//         printSlow("\033[1;35mYour progression is being monitored.\033[0m\n", 40);
-//         printSlow("\033[1;37mAwaiting further instructions...\033[0m\n\n", 40);
-//     }
-// }

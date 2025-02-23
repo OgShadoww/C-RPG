@@ -1,22 +1,15 @@
 #include <stdio.h>
 #include <string.h>
-#include "command_manager.h"
-#include "player.h"
-#include"ui_manager.h"
-
+#include "system/command_manager.h"
+#include "player/player.h"
+#include"ui/ui_manager.h"
+#include"time/time_manager.h"
 
 int main() {
     char command[100];
     Player player;
-    int firstTime = !loadPlayer(&player);  // Якщо `loadPlayer` поверне 0, значить, персонаж ще не створений.
 
-    printWelcomeMessage(&player, firstTime);
-
-    if (firstTime) {
-        printf("\nEnter `start()` to begin your journey.\n");
-    } else {
-        printf("\nEnter your command:\n");
-    }
+    startGame(&player);
 
     while (1) {
         printf("> ");

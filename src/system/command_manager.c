@@ -4,15 +4,22 @@
 #include "command_manager.h"
 #include "../ui/ui_manager.h"
 #include "../player/player.h"
+#include"../tasks/tasks.h"
+#include"../time/time_manager.h"
 
 void startGame(Player *player) {
-    if(loadPlayer(player) == 1) {
-        printPlayer(player, 0);
-    }   
-    else {
-        createPlayer(player);
-        printPlayer(player, 1);
+    int firstTime = loadPlayer(player); 
+
+    printWelcomeMessage(player, !firstTime);
+
+    if (firstTime) {
+        printf("\nEnter `start()` to begin your journey.\n");
+        return;  
     }
+
+    checkDailyReset(player);
+    printPlayerStats(player, firstTime);
+    printf("\nEnter your command:\n");
 }
 
 void exitGame(Player *player) {

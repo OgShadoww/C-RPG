@@ -1,23 +1,45 @@
 #include<stdio.h>
+#include <string.h>
 #include "player.h"
 #include"../ui/ui_manager.h"
 
 void createPlayer(Player *player) {
-    FILE *file = fopen(player->path, "w");
+    clearScreen();
+    
+    printSlow("\n\033[1;34m[System] New user detected...\033[0m\n", 40);
+    printSlow("\033[1;32m[System] Initializing profile...\033[0m\n\n", 40);
+    
+    // Введення імені гравця
+    printf("\033[1;36mEnter your name: \033[0m");
+    fgets(player->name, sizeof(player->name), stdin);
+    player->name[strcspn(player->name, "\n")] = 0;  // Видаляємо `\n` у кінці рядка
 
-    if (!file) {
-        perror("Error creating file");
-        return;
+    // Перевірка на пусте ім'я
+    if (strlen(player->name) == 0) {
+        strcpy(player->name, "Unknown");
     }
 
-    fprintf(file, "%s %d %d %d %d %d %d %d %d %d %d %d %d %s\n", 
-        player->name, 0, 0, 10, 0, 1, 1, 1, 1, 1, 0, 0, 0, "2025-02-21");
+    // Початкові характеристики
+    player->level = 1;
+    player->xp = 0;
+    player->xp_needed = 10;
+    player->intelligence = 1;
+    player->strength = 1;
+    player->endurance = 1;
+    player->creativity = 1;
+    player->discipline = 1;
+    player->completed_tasks = 0;
+    player->defeated_bosses = 0;
+    strcpy(player->last_login, "0000-00-00");
 
-    fclose(file);
+    // Збереження профілю
+    updatePlayer(player);
+    
+    printSlow("\n\033[1;32m[System] Profile successfully created!\033[0m\n\n", 40);
 }
 
 int loadPlayer(Player *player) {
-    FILE *data = fopen(player->path, "r");
+    FILE *data = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "r");
     if (!data) {
         perror("Error opening file");
         return 0;

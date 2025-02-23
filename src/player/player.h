@@ -28,7 +28,6 @@ typedef struct {
     int defeated_bosses;  
 
     char last_login[20];
-    char path[30];
 } Player;
 
 void createPlayer(Player *player);

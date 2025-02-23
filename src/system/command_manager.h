@@ -1,7 +1,7 @@
 #ifndef COMMAND_MANAGER_H
 #define COMMAND_MANAGER_H
 
-#include "player.h"
+#include "../player/player.h"
 
 typedef struct {
     char *name;                // Назва команди
@@ -11,5 +11,7 @@ typedef struct {
 extern Command commands[];
 
 void executeCommand(const char *input, Player *player);
+void startGame(Player *player);
+void exitGame(Player *player);
 
 #endif

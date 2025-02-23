@@ -1,5 +1,5 @@
 #include "level_manager.h"
-#include "ui_manager.h"
+#include "../ui/ui_manager.h"
 #include <stdio.h>
 
 void addXP(Player *player, int xp) {
