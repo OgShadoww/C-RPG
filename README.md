@@ -29,7 +29,6 @@ cd C-RPG
 - **🧠 AI Assistant: A mysterious in-game entity guiding your journey**
 
 ## 🔹 How Does It Work?
-Unlike traditional RPGs, C-RPG rewards real-world growth:
 
 - **🏋️‍♂️ Improve your skills → Gain XP**
 - **📖 Learn something new → Unlock new story elements**
