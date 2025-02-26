@@ -1,0 +1,5 @@
+4
+T001 | Read 10 pages of a book | 15 | Easy | 0
+T002 | Do a 15-minute workout  | 20 | Medium | 0
+T003 | Solve a logic puzzle    | 25 | Hard | 0
+S001 | Decode the mysterious message | 50 | Story | 0

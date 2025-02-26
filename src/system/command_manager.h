@@ -2,6 +2,7 @@
 #define COMMAND_MANAGER_H
 
 #include "../player/player.h"
+#include "../tasks/tasks.h"
 
 typedef struct {
     char *name;                // Назва команди
@@ -11,7 +12,7 @@ typedef struct {
 extern Command commands[];
 
 void executeCommand(const char *input, Player *player);
-void startGame(Player *player);
+void startGame(Player *player, Task tasks[]);
 void exitGame(Player *player);
 void profile(Player *player);
 

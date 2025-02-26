@@ -6,7 +6,17 @@
 #include "../ui/ui_manager.h"
 #include "tasks.h"
 
-#define MAX_TASKS 20
+void loadTasks(Task tasks[MAX_TASKS]) {
+    FILE *dataT = fopen("/Users/orestgalenza/Desktop/TermRPG/data/tasks.txt", "r");
+
+    if (dataT == NULL) {
+        perror("Error opening tasks file");
+        return; 
+    }
+    
+
+    
+}
 
 void resetDailyTasks() {
     FILE *tasksFile = fopen("/Users/orestgalenza/Desktop/TermRPG/data/tasks.txt", "w");
@@ -16,8 +26,7 @@ void resetDailyTasks() {
         return;
     }
 
-    fprintf(tasksFile, "task1_id New daily task 10\n");
-    fprintf(tasksFile, "task2_id Another task 15\n");
+    
 
     fclose(tasksFile);
 }

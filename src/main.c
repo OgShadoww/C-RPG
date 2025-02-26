@@ -3,11 +3,13 @@
 #include "system/command_manager.h"
 #include "player/player.h"
 #include"ui/ui_manager.h"
+#include"tasks/tasks.h"
 #include"time/time_manager.h"
 
 int main() {
     char command[100];
     Player player;
+    Task tasks[MAX_TASKS];
 
     startGame(&player);
 

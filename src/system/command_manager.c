@@ -7,17 +7,15 @@
 #include"../tasks/tasks.h"
 #include"../time/time_manager.h"
 
-void startGame(Player *player) {
-    FILE *data = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "r");
-    int firstTime = (data == NULL); 
-    if (data) fclose(data); 
+void startGame(Player *player, Task tasks[]) {
+    FILE *dataP = fopen("/Users/orestgalenza/Desktop/TermRPG/data/player.txt", "r");
+    FILE *dataT = fopen("/Users/orestgalenza/Desktop/TermRPG/data/tasks.txt", "r");
+    int firstTime = (dataP == NULL); 
+    if (dataP) fclose(dataP); 
 
     if (!firstTime) {
         int loadFail = loadPlayer(player);
-        if (loadFail) {
-            printSlow("[SYSTEM] Please delete the save file and restart.\n", 40);
-            exit(1); 
-        }
+        loadTasks(tasks);
     }
 
     printWelcomeMessage(player, firstTime);
