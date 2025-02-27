@@ -14,7 +14,6 @@ void loadTasks(Task tasks[MAX_TASKS]) {
         return; 
     }
     
-
     
 }
 

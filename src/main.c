@@ -11,7 +11,7 @@ int main() {
     Player player;
     Task tasks[MAX_TASKS];
 
-    startGame(&player);
+    startGame(&player, tasks);
 
     while (1) {
         printf("> ");
@@ -23,3 +23,5 @@ int main() {
 
     return 0;
 }
+
+// Plan add comments for every file
