@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "*.cpp": "cpp",
-        "player.h": "c",
-        "ui_manager.h": "c",
-        "command_manager.h": "c"
-    }
-}
